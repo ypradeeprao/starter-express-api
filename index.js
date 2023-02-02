@@ -37,7 +37,7 @@ app.get('/:id', function (req, res) {
  })
 
 
-app.post('/deleteuser', function (req, res) {
+app.post('/deleteuser', async function (req, res) {
    
     console.log(req.body); 
        console.log(req.body.id);
@@ -62,7 +62,7 @@ app.post('/deleteuser', function (req, res) {
 
 
       console.log("mongofile");
-      var x = mongojs.add(4,2) ; 
+      var x = await mongojs.add(4,2) ; 
 
 // fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
 //   if (err)
