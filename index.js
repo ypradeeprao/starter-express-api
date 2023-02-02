@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-
+const mongojs= require("./mongo.js")
 
 
 const bodyParser = require('body-parser');
@@ -60,7 +60,8 @@ app.post('/deleteuser', function (req, res) {
        
 
 
-       
+      console.log("mongofile");
+      var x = mongojs.add(4,2) ; 
 
 fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
   if (err)
