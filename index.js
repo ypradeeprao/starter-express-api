@@ -26,9 +26,9 @@ app.post('/deleteuser', function (req, res) {
     fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
         var users = JSON.parse( data );
         let usersU = {};
-       
+        var user = JSON.parse( req.data );
        for(let i in users){
-        if(i == req.data.id){
+        if(i == user.id){
 
         }
         else{
