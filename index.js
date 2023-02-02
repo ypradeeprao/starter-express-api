@@ -19,15 +19,40 @@ app.get('/:id', function (req, res) {
        res.end( JSON.stringify(user));
     });
  })
- 
+
 
 app.post('/adduser', function (req, res) {
     // First read existing users.
     fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-       data = JSON.parse( data );
-       data["user4"] = user["user4"];
-       console.log( data );
-       res.end( JSON.stringify(data));
+        var users = JSON.parse( data );
+        let usersU = {};
+       var user = users["user" + req.params.id];
+       for(let i in users){
+        if(i == req.params.id){
+
+        }
+        else{
+            usersU[i] = users[i];
+        }
+       } 
+       
+
+
+       
+
+// fs.writeFile(__dirname + "/" + "users.json", usersU, (err) => {
+//   if (err)
+//     console.log(err);
+//   else {
+//     console.log("File written successfully\n");
+//     console.log("The written has the following contents:");
+//     console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
+//   }
+// });
+
+
+     
+       res.end( JSON.stringify(usersU));
     });
  })
 
