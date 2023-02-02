@@ -19,17 +19,17 @@ var config = {
     data: data
 };
     
-const add = function(x, y){
+const add = async function(x, y){
     console.log(x+y);
 
-    axios(config)
+    await axios(config)
     .then(function (response) {
         console.log(JSON.stringify(response.data));
     })
     .catch(function (error) {
         console.log(error);
     });
-    
+
     return x+y;
 }
 const subtract = function(x, y){
