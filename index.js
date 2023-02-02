@@ -3,8 +3,18 @@ const app = express()
 
 
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.json()) 
+
+const bodyParser = require('body-parser');
+const cors = require('cors');
+app.use(cors());
+// Configuring body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+
+
+
 
 var fs = require("fs");
 
@@ -28,7 +38,7 @@ app.get('/:id', function (req, res) {
 
 app.post('/deleteuser', function (req, res) {
    
-    console.log(req);
+    console.log(req.body);
     var user = JSON.parse( req.body );
    
     console.log("user");
