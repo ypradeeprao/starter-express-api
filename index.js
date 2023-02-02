@@ -24,7 +24,7 @@ app.get('/:id', function (req, res) {
 app.post('/deleteuser', function (req, res) {
    
     console.log(req);
-    var user = JSON.parse( req.data );
+    var user = JSON.parse( req.body );
    
     console.log("user");
     console.log(user);
