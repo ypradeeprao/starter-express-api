@@ -50,7 +50,7 @@ app.post('/deleteuser', function (req, res) {
         let usersU = {};
      
        for(let i in users){
-        if(i == user.id){
+        if(users[i].id == user.id){
 
         }
         else{
