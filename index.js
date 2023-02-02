@@ -27,6 +27,8 @@ app.post('/deleteuser', function (req, res) {
         var users = JSON.parse( data );
         let usersU = {};
         var user = JSON.parse( req.data );
+        console.log("user");
+        console.log(user);
        for(let i in users){
         if(i == user.id){
 
