@@ -38,8 +38,7 @@ app.get('/:id', function (req, res) {
 
 
  app.post('/signup', async (req, res) => {
-   const { email, firstName } = req.body
-   const user = new User({ email, firstName })
+  
    var x = await mongojs.add(4,2) ; 
    res.end( JSON.stringify({}));
  })
