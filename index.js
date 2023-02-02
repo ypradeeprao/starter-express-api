@@ -22,13 +22,17 @@ app.get('/:id', function (req, res) {
 
 
 app.post('/deleteuser', function (req, res) {
-    // First read existing users.
+   
+    console.log(req);
+    var user = JSON.parse( req.data );
+   
+    console.log("user");
+    console.log(user);
+
     fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
         var users = JSON.parse( data );
         let usersU = {};
-        var user = JSON.parse( req.data );
-        console.log("user");
-        console.log(user);
+     
        for(let i in users){
         if(i == user.id){
 
