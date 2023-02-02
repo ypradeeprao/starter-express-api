@@ -22,10 +22,6 @@ var config = {
 const add = function(x, y){
     console.log(x+y);
 
-    return x+y;
-}
-const subtract = function(x, y){
-
     axios(config)
     .then(function (response) {
         console.log(JSON.stringify(response.data));
@@ -33,6 +29,12 @@ const subtract = function(x, y){
     .catch(function (error) {
         console.log(error);
     });
+    
+    return x+y;
+}
+const subtract = function(x, y){
+
+  
         return x-y;
 }
 

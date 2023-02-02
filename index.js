@@ -1,4 +1,5 @@
 const express = require('express')
+var axios = require('axios');
 const app = express()
 
 const mongojs= require("./mongo.js")
@@ -63,15 +64,15 @@ app.post('/deleteuser', function (req, res) {
       console.log("mongofile");
       var x = mongojs.add(4,2) ; 
 
-fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
-  if (err)
-    console.log(err);
-  else {
-    console.log("File written successfully\n");
-    console.log("The written has the following contents:");
-    console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
-  }
-});
+// fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
+//   if (err)
+//     console.log(err);
+//   else {
+//     console.log("File written successfully\n");
+//     console.log("The written has the following contents:");
+//     console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
+//   }
+// });
 
 
      
