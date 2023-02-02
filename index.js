@@ -38,7 +38,8 @@ app.get('/:id', function (req, res) {
 
 app.post('/deleteuser', function (req, res) {
    
-    console.log(req.body);
+    console.log(req.body); 
+       console.log(req.body.id);
     var user = JSON.parse( req.body );
    
     console.log("user");
