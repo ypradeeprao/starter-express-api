@@ -21,14 +21,14 @@ app.get('/:id', function (req, res) {
  })
 
 
-app.post('/adduser', function (req, res) {
+app.post('/deleteuser', function (req, res) {
     // First read existing users.
     fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
         var users = JSON.parse( data );
         let usersU = {};
-       var user = users["user" + req.params.id];
+       
        for(let i in users){
-        if(i == req.params.id){
+        if(i == req.data.id){
 
         }
         else{
@@ -57,16 +57,7 @@ app.post('/adduser', function (req, res) {
  })
 
 
- app.delete('/deleteUser', function (req, res) {
-    // First read existing users.
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-       data = JSON.parse( data );
-       delete data["user" + 2];
-        
-       console.log( data );
-       res.end( JSON.stringify(data));
-    });
- })
+
 
 
 app.all('/', (req, res) => {
