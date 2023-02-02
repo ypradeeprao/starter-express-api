@@ -1,10 +1,10 @@
 var axios = require('axios');
 var data = JSON.stringify({
-    "collection": "planets",
-    "database": "sample_guides",
+    "collection": "samplecollection1",
+    "database": "sampledb1",
     "dataSource": "Cluster0",
     "projection": {
-        "_id": 1
+        "_id": "63dc364a3ace6b16ecfd539e"
     }
 });
             
