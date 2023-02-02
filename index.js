@@ -40,7 +40,7 @@ app.post('/deleteuser', function (req, res) {
    
     console.log(req.body); 
        console.log(req.body.id);
-    var user = JSON.parse( req.body );
+    var user =  req.body ;
    
     console.log("user");
     console.log(user);
