@@ -62,15 +62,15 @@ app.post('/deleteuser', function (req, res) {
 
        
 
-// fs.writeFile(__dirname + "/" + "users.json", usersU, (err) => {
-//   if (err)
-//     console.log(err);
-//   else {
-//     console.log("File written successfully\n");
-//     console.log("The written has the following contents:");
-//     console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
-//   }
-// });
+fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
+  if (err)
+    console.log(err);
+  else {
+    console.log("File written successfully\n");
+    console.log("The written has the following contents:");
+    console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
+  }
+});
 
 
      
