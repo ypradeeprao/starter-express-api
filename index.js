@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser');
-app.use(bodyParser);
-app.use(bodyParser.json()); //Make sure u have added this line
-app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json()) 
 
 var fs = require("fs");
 
