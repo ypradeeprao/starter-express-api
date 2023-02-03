@@ -42,9 +42,15 @@ const createtable = async function(req){
       await axios(insertmanyconfig)
       .then(function (response) {
           console.log(JSON.stringify(response.data));
+          resp.issuccess = true;
+          resp.data = response.data;
+          resp.message = '';
       })
       .catch(function (error) {
           console.log(error);
+          resp.issuccess = false;
+          resp.data = [];
+          resp.message = error;
       });
   
       return resp;

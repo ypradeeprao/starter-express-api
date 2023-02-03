@@ -45,8 +45,8 @@ app.get('/:id', function (req, res) {
 
  app.post('/createtable', async (req, res) => {
   
-   var x = await mongojs.createtable(req) ; 
-   res.end( JSON.stringify({}));
+   var createtableresp = await mongojs.createtable(req) ; 
+   res.end( JSON.stringify(createtableresp));
  })
 
  app.post('/signup', async (req, res) => {
