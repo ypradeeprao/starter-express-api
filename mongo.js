@@ -22,10 +22,22 @@ var config = {
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
 
 const insertrecords = async function(req){
-  let resp = {issuccess:"true", message:""}
+  let resp = {issuccess:"true", message:""};
+
+  let {tablename, tabledatalist} = req.body;
+  
+  let insertrecordsjson = {
+      "dataSource": "Cluster0",
+      "database": "sampledb1",
+      "collection": tablename,
+      "documents": tabledatalist
+  }
+
+  
   let insertmanyconfig = JSON.parse(JSON.stringify(config));
   insertmanyconfig.url = insertmanyconfigurl;
-  insertmanyconfig.data = req.body;
+  insertmanyconfig.data = insertrecordsjson;
+
 
     await axios(insertmanyconfig)
     .then(function (response) {
