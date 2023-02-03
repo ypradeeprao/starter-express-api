@@ -170,9 +170,8 @@ const editrecords = async function(req){
         "dataSource": "Cluster0",
         "database": "sampledb1",
         "collection": tablename,
-        "filter": conditionexpression,
-        "update": { "$set": updateexpression },
-      "upsert":upsertifnotfound
+        "filter": conditionexpression
+     
     }
   
     
