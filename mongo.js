@@ -103,7 +103,7 @@ const subtract = function(x, y){
 }
 
 module.exports ={
-    add,subtract,insertrecords
+    add,subtract,insertrecords,createtable
 }
 
 
