@@ -57,6 +57,14 @@ app.get('/:id', function (req, res) {
    let mongojsresp = await mongojs.deletetable(req) ; 
    res.end( JSON.stringify(mongojsresp));
  })
+ 
+
+ app.post('/retrieverecords', async (req, res) => {
+  
+   var x = await mongojs.retrieverecords(req) ; 
+   res.end( JSON.stringify({}));
+ })
+
 
  app.post('/insertrecords', async (req, res) => {
   

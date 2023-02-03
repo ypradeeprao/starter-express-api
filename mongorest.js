@@ -21,7 +21,8 @@ var config = {
     },
     data: data
 };
-   
+
+var retrievemanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/find';
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
 var editmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/updateMany';
 var deletemanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/deleteMany';
@@ -99,6 +100,38 @@ const createtable = async function(req){
   const deletetable = async function(req){
     let resp = {issuccess:"true", message:"cannot be deleted from frontend"};
     return resp;
+  }
+
+  const retrieverecords = async function(req){
+    let resp = {issuccess:"true", message:""};
+  
+    let {tablename, conditionexpression, sortexpression, limit} = req.body;
+    
+    let recordsjson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "filter": conditionexpression,
+        "sort":sortexpression,
+        "limit":limit
+     
+    }
+  
+    
+    let insertmanyconfig = JSON.parse(JSON.stringify(config));
+    insertmanyconfig.url = retrievemanyconfigurl;
+    insertmanyconfig.data = recordsjson;
+  
+  
+      await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  
+      return resp;
   }
 
 const insertrecords = async function(req){
@@ -193,7 +226,7 @@ const editrecords = async function(req){
 
 module.exports ={
    createtable,edittable,deletetable,
-   insertrecords,editrecords,deleterecords
+   retrieverecords, insertrecords,editrecords,deleterecords
 }
 
 
