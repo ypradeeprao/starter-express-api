@@ -1,8 +1,4 @@
 var axios = require('axios');
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://pradeepsfdc07:Tir6tw3q@@cluster0.tzahxl5.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
 
 
 
