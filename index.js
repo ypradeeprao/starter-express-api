@@ -37,6 +37,12 @@ app.get('/:id', function (req, res) {
  })
 
 
+ app.post('/insertrecords', async (req, res) => {
+  
+   var x = await mongojs.insertrecords(req) ; 
+   res.end( JSON.stringify({}));
+ })
+
  app.post('/signup', async (req, res) => {
   
    var x = await mongojs.add(4,2) ; 
