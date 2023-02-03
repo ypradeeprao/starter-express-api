@@ -90,67 +90,15 @@ const createtable = async function(req){
       return resp;
   }
 
-  
   const edittable = async function(req){
-    let resp = {issuccess:"true", message:""};
-  
-    let {oldtablename, tablename } = req.body;
-    
-    let edittablejson = {
-        "dataSource": "Cluster0",
-        "database": "sampledb1",
-        "collection": tablename,
-        "documents": [{"sampleid":"sampleid"}]
-    }
-  
-    
-    let insertmanyconfig = JSON.parse(JSON.stringify(config));
-    insertmanyconfig.url = insertmanyconfigurl;
-    insertmanyconfig.data = edittablejson;
-  
-  
-      await axios(insertmanyconfig)
-      .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          resp.issuccess = true;
-          resp.data = [];
-          resp.message = '';
-      })
-      .catch(function (error) {
-          console.log(error);
-          resp.issuccess = false;
-          resp.data = [];
-          resp.message = error;
-      });
+    let resp = {issuccess:"true", message:"cannot be edited from frontend"};
+    return resp;
+  }
 
 
-      let deletetablejson = {
-        "dataSource": "Cluster0",
-        "database": "sampledb1",
-        "collection": tablename,
-        "filter": { "sampleid": "sampleid" }
-    }
-      let deletesampleconfig = JSON.parse(JSON.stringify(config));
-      deletesampleconfig.url = deletemanyconfigurl;
-      deletesampleconfig.data = deletetablejson;
-     
-      if(resp.issuccess == true){
-      await axios(deletesampleconfig)
-      .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          resp.issuccess = true;
-          resp.data = [];
-          resp.message = '';
-      })
-      .catch(function (error) {
-          console.log(error);
-          resp.issuccess = false;
-          resp.data = [];
-          resp.message = error;
-      });
-      }
-  
-      return resp;
+  const deletetable = async function(req){
+    let resp = {issuccess:"true", message:"cannot be deleted from frontend"};
+    return resp;
   }
 
 const insertrecords = async function(req){
@@ -185,7 +133,7 @@ const insertrecords = async function(req){
 
 
 module.exports ={
-   insertrecords,createtable,edittable
+   insertrecords,createtable,deletetable
 }
 
 

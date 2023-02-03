@@ -49,10 +49,16 @@ app.get('/:id', function (req, res) {
    res.end( JSON.stringify(mongojsresp));
  })
 
-
  app.post('/edittable', async (req, res) => {
   
    let mongojsresp = await mongojs.edittable(req) ; 
+   res.end( JSON.stringify(mongojsresp));
+ })
+
+
+ app.post('/deletetable', async (req, res) => {
+  
+   let mongojsresp = await mongojs.deletetable(req) ; 
    res.end( JSON.stringify(mongojsresp));
  })
 
