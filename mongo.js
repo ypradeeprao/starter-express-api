@@ -46,7 +46,7 @@ const createtable = async function(req){
       .then(function (response) {
           console.log(JSON.stringify(response.data));
           resp.issuccess = true;
-          resp.data = response.data;
+          resp.data = [];
           resp.message = '';
       })
       .catch(function (error) {
@@ -66,7 +66,8 @@ const createtable = async function(req){
       let deletesampleconfig = JSON.parse(JSON.stringify(config));
       deletesampleconfig.url = deletemanyconfigurl;
       deletesampleconfig.data = deletetablejson;
-
+     
+      if(resp.issuccess == true){
       await axios(deletesampleconfig)
       .then(function (response) {
           console.log(JSON.stringify(response.data));
@@ -80,6 +81,7 @@ const createtable = async function(req){
           resp.data = [];
           resp.message = error;
       });
+      }
   
       return resp;
   }
