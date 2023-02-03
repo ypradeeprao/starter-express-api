@@ -20,6 +20,9 @@ var config = {
 };
    
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
+var editmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
+var deletemanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/deleteMany';
+
 
 const createtable = async function(req){
     let resp = {issuccess:"true", message:""};
@@ -40,6 +43,31 @@ const createtable = async function(req){
   
   
       await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          resp.issuccess = true;
+          resp.data = response.data;
+          resp.message = '';
+      })
+      .catch(function (error) {
+          console.log(error);
+          resp.issuccess = false;
+          resp.data = [];
+          resp.message = error;
+      });
+
+
+      let deletetablejson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "filter": { "sampleid": "sampleid" }
+    }
+      let deletesampleconfig = JSON.parse(JSON.stringify(config));
+      deletesampleconfig.url = deletemanyconfigurl;
+      deletesampleconfig.data = deletetablejson;
+
+      await axios(deletesampleconfig)
       .then(function (response) {
           console.log(JSON.stringify(response.data));
           resp.issuccess = true;
