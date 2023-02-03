@@ -21,6 +21,36 @@ var config = {
    
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
 
+const createtable = async function(req){
+    let resp = {issuccess:"true", message:""};
+  
+    let {tablename, tabledatalist} = req.body;
+    
+    let createtablejson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "documents": []
+    }
+  
+    
+    let insertmanyconfig = JSON.parse(JSON.stringify(config));
+    insertmanyconfig.url = insertmanyconfigurl;
+    insertmanyconfig.data = createtablejson;
+  
+  
+      await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  
+      return resp;
+  }
+
+  
 const insertrecords = async function(req){
   let resp = {issuccess:"true", message:""};
 
