@@ -30,7 +30,7 @@ const createtable = async function(req){
         "dataSource": "Cluster0",
         "database": "sampledb1",
         "collection": tablename,
-        "documents": [{}]
+        "documents": [{"sampleid":"sampleid"}]
     }
   
     
