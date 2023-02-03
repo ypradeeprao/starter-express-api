@@ -138,11 +138,14 @@ const editrecords = async function(req){
     let recordsjson = {
         "dataSource": "Cluster0",
         "database": "sampledb1",
-        "collection": tablename,
-        "filter": conditionexpression,
-        "update": { "$set": updateexpression },
-         "upsert":upsertifnotfound
-    }
+        "collection": "tablename",
+        "filter": { "status": "open" },
+        "update": {
+            "$set": {
+                "status": "complete",
+            }
+        }
+    };
   
     
     let insertmanyconfig = JSON.parse(JSON.stringify(config));
