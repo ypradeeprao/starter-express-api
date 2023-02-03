@@ -62,7 +62,7 @@ app.get('/:id', function (req, res) {
  app.post('/retrieverecords', async (req, res) => {
   
    var x = await mongojs.retrieverecords(req) ; 
-   res.end( JSON.stringify({}));
+   res.end( JSON.stringify({x}));
  })
 
 
