@@ -18,12 +18,17 @@ const createtable = async function(req){
     let resp = {issuccess:"true", message:""};
   
     let {tablename, tabledatalist} = req.body;
-  
+   console.log(tablename);
+
     await MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
+        if (err) {
+            console.log(err);
+        };
         var dbo = db.db("mydb");
         dbo.createCollection("customers", function(err, res) {
-          if (err) throw err;
+            if (err) {
+                console.log(err);
+            };
           console.log("Collection created!");
           db.close();
         });
