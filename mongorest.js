@@ -105,15 +105,17 @@ const createtable = async function(req){
   const retrieverecords = async function(req){
     let resp = {issuccess:"true", message:""};
   
-    let {tablename, conditionexpression, sortbycolumnname,issortbydesc, limit} = req.body;
+    let {tablename, conditionexpression, sortby,sortbytype, limit} = req.body;
     let sortexpression ={};
-    if(sortbycolumnname && sortbycolumnname != "" && issortbydesc != true){
-        sortexpression[sortbycolumnname] = 1;
+    if(sortby && sortby != "" && sortbytype != "desc"){
+        sortexpression[sortby] = 1;
     }
 
-    if(sortbycolumnname && sortbycolumnname != "" && issortbydesc == true){
-        sortexpression[sortbycolumnname] = -1;
+    if(sortby && sortby != "" && sortbytype == "desc"){
+        sortexpression[sortby] = -1;
     }
+
+  
     let limitvalue = 1;
    if(limit && limit != ""){
     limitvalue = limit;
