@@ -105,7 +105,7 @@ const createtable = async function(req){
   const retrieverecords = async function(req){
     let resp = {issuccess:"true", message:""};
   
-    let {tablename, conditionexpression,retrievecolumns, sortby,sortbytype, limit} = req.body;
+    let {tablename, conditionexpression,columns, sortby,sortbytype, limit} = req.body;
     let sortexpression ={};
     if(sortby && sortby != "" && sortbytype != "desc"){
         sortexpression[sortby] = 1;
@@ -121,11 +121,11 @@ const createtable = async function(req){
     limitvalue = limit;
    }
 
-   let retrievecolumnsvalue = {};
-   if(retrievecolumns && retrievecolumns != "" 
-   && retrievecolumns.length > 0){
-   for(let i=0; i<retrievecolumns.length; i++){
-    retrievecolumnsvalue[retrievecolumns[i]] = 1;
+   let columnsvalue = {};
+   if(columns && columns != "" 
+   && columns.length > 0){
+   for(let i=0; i<columns.length; i++){
+    columnsvalue[columns[i]] = 1;
    }
    }
     let recordsjson = {
@@ -133,7 +133,7 @@ const createtable = async function(req){
         "database": "sampledb1",
         "collection": tablename,
         "filter": conditionexpression,
-        "projection": retrievecolumnsvalue,
+        "projection": columnsvalue,
         "sort":sortexpression,
         "limit":limitvalue
      
