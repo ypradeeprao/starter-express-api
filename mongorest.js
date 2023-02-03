@@ -105,15 +105,26 @@ const createtable = async function(req){
   const retrieverecords = async function(req){
     let resp = {issuccess:"true", message:""};
   
-    let {tablename, conditionexpression, sortexpression, limit} = req.body;
-    
+    let {tablename, conditionexpression, sortbycolumnname,issortbydesc, limit} = req.body;
+    let sortexpression ={};
+    if(sortbycolumnname && sortbycolumnname != "" && issortbydesc != true){
+        sortexpression[sortbycolumnname] = 1;
+    }
+
+    if(sortbycolumnname && sortbycolumnname != "" && issortbydesc == true){
+        sortexpression[sortbycolumnname] = -1;
+    }
+    let limitvalue = 1;
+   if(limit && limit != ""){
+    limitvalue = limit;
+   }
     let recordsjson = {
         "dataSource": "Cluster0",
         "database": "sampledb1",
         "collection": tablename,
         "filter": conditionexpression,
         "sort":sortexpression,
-        "limit":limit
+        "limit":limitvalue
      
     }
   
