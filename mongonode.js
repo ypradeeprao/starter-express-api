@@ -19,7 +19,7 @@ const createtable = async function(req){
   
     let {tablename, tabledatalist} = req.body;
   
-    MongoClient.connect(url, function(err, db) {
+    await MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
         dbo.createCollection("customers", function(err, res) {
@@ -29,7 +29,7 @@ const createtable = async function(req){
         });
       });
 
-      
+
       return resp;
   }
 
