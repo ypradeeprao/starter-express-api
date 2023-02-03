@@ -37,11 +37,7 @@ app.get('/:id', function (req, res) {
  })
 
 
- app.post('/insertrecords', async (req, res) => {
-  
-   var x = await mongojs.insertrecords(req) ; 
-   res.end( JSON.stringify({}));
- })
+
 
  app.post('/createtable', async (req, res) => {
   console.log("createtabledfd");
@@ -62,7 +58,23 @@ app.get('/:id', function (req, res) {
    res.end( JSON.stringify(mongojsresp));
  })
 
+ app.post('/insertrecords', async (req, res) => {
+  
+   var x = await mongojs.insertrecords(req) ; 
+   res.end( JSON.stringify({}));
+ })
 
+ app.post('/editrecords', async (req, res) => {
+  
+   var x = await mongojs.editrecords(req) ; 
+   res.end( JSON.stringify({}));
+ })
+
+ app.post('/deleterecords', async (req, res) => {
+  
+   var x = await mongojs.deleterecords(req) ; 
+   res.end( JSON.stringify({}));
+ })
 
  app.post('/signup', async (req, res) => {
   
