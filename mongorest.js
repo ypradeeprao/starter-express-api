@@ -23,7 +23,7 @@ var config = {
 };
    
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
-var editmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
+var editmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/updateMany';
 var deletemanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/deleteMany';
 
 
@@ -106,7 +106,7 @@ const insertrecords = async function(req){
 
   let {tablename, tabledatalist} = req.body;
   
-  let insertrecordsjson = {
+  let recordsjson = {
       "dataSource": "Cluster0",
       "database": "sampledb1",
       "collection": tablename,
@@ -116,7 +116,7 @@ const insertrecords = async function(req){
   
   let insertmanyconfig = JSON.parse(JSON.stringify(config));
   insertmanyconfig.url = insertmanyconfigurl;
-  insertmanyconfig.data = insertrecordsjson;
+  insertmanyconfig.data = recordsjson;
 
 
     await axios(insertmanyconfig)
@@ -130,10 +130,69 @@ const insertrecords = async function(req){
     return resp;
 }
 
+const editrecords = async function(req){
+    let resp = {issuccess:"true", message:""};
+  
+    let {tablename, conditionexpression, updateexpression, upsertifnotfound} = req.body;
+    
+    let recordsjson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "filter": conditionexpression,
+        "update": { "$set": updateexpression },
+         "upsert":upsertifnotfound
+    }
+  
+    
+    let insertmanyconfig = JSON.parse(JSON.stringify(config));
+    insertmanyconfig.url = editmanyconfigurl;
+    insertmanyconfig.data = recordsjson;
+  
+  
+      await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  
+      return resp;
+  }
 
+  const deleterecords = async function(req){
+    let resp = {issuccess:"true", message:""};
+  
+    let {tablename, tabledatalist} = req.body;
+    
+    let recordsjson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "documents": tabledatalist
+    }
+  
+    
+    let insertmanyconfig = JSON.parse(JSON.stringify(config));
+    insertmanyconfig.url = insertmanyconfigurl;
+    insertmanyconfig.data = recordsjson;
+  
+  
+      await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  
+      return resp;
+  }
 
 module.exports ={
-   insertrecords,createtable,edittable,deletetable
+   createtable,edittable,deletetable,
+   insertrecords,editrecords,deleterecords
 }
 
 
