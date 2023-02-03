@@ -23,9 +23,9 @@ var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/
 
 const insertrecords = async function(req){
   let resp = {issuccess:"true", message:""}
-  let insertconfig = JSON.parse(JSON.stringify(config));
-  insertconfig.url = insertmanyconfigurl;
-  insertconfig.data = req.body;
+  let insertmanyconfig = JSON.parse(JSON.stringify(config));
+  insertmanyconfig.url = insertmanyconfigurl;
+  insertmanyconfig.data = req.body;
 
     await axios(insertmanyconfig)
     .then(function (response) {
