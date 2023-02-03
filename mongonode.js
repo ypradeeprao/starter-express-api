@@ -7,7 +7,8 @@ const authMechanism = "DEFAULT";
 // Replace the following with your MongoDB deployment's connection string.
 const url =
   `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism=${authMechanism}`;
-
+ 
+  const client = new MongoClient(url);
 
 
 
@@ -20,19 +21,22 @@ const createtable = async function(req){
     let {tablename, tabledatalist} = req.body;
    console.log(tablename);
 
-    await MongoClient.connect(url, function(err, db) {
-        if (err) {
-            console.log(err);
-        };
-        var dbo = db.db("mydb");
-        dbo.createCollection("customers", function(err, res) {
-            if (err) {
-                console.log(err);
-            };
-          console.log("Collection created!");
-          db.close();
-        });
-      });
+  
+    try {
+      const database = client.db("insertDB");
+      const haiku = database.collection("haiku");
+      // create a document to insert
+      const doc = {
+        title: "Record of a Shriveled Datum",
+        content: "No bytes, no problem. Just insert a document, in MongoDB",
+      }
+      const result = await haiku.insertOne(doc);
+      console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    } finally {
+      await client.close();
+    }
+  
+
 
 
       return resp;
