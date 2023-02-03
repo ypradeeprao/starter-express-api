@@ -1,4 +1,11 @@
 var axios = require('axios');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://pradeepsfdc07:Tir6tw3q@@cluster0.tzahxl5.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+
+
+
 var data = JSON.stringify({
     "collection": "samplecollection1",
     "database": "sampledb1",
@@ -22,6 +29,7 @@ var config = {
 var insertmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
 var editmanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/insertMany';
 var deletemanyconfigurl = 'https://data.mongodb-api.com/app/data-eculy/endpoint/data/v1/action/deleteMany';
+
 
 
 const createtable = async function(req){
@@ -87,6 +95,68 @@ const createtable = async function(req){
   }
 
   
+  const edittable = async function(req){
+    let resp = {issuccess:"true", message:""};
+  
+    let {oldtablename, tablename } = req.body;
+    
+    let edittablejson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "documents": [{"sampleid":"sampleid"}]
+    }
+  
+    
+    let insertmanyconfig = JSON.parse(JSON.stringify(config));
+    insertmanyconfig.url = insertmanyconfigurl;
+    insertmanyconfig.data = edittablejson;
+  
+  
+      await axios(insertmanyconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          resp.issuccess = true;
+          resp.data = [];
+          resp.message = '';
+      })
+      .catch(function (error) {
+          console.log(error);
+          resp.issuccess = false;
+          resp.data = [];
+          resp.message = error;
+      });
+
+
+      let deletetablejson = {
+        "dataSource": "Cluster0",
+        "database": "sampledb1",
+        "collection": tablename,
+        "filter": { "sampleid": "sampleid" }
+    }
+      let deletesampleconfig = JSON.parse(JSON.stringify(config));
+      deletesampleconfig.url = deletemanyconfigurl;
+      deletesampleconfig.data = deletetablejson;
+     
+      if(resp.issuccess == true){
+      await axios(deletesampleconfig)
+      .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          resp.issuccess = true;
+          resp.data = [];
+          resp.message = '';
+      })
+      .catch(function (error) {
+          console.log(error);
+          resp.issuccess = false;
+          resp.data = [];
+          resp.message = error;
+      });
+      }
+  
+      return resp;
+  }
+
 const insertrecords = async function(req){
   let resp = {issuccess:"true", message:""};
 
@@ -116,30 +186,10 @@ const insertrecords = async function(req){
     return resp;
 }
 
-const add = async function(x, y){
-    console.log(x+y);
 
-    await axios(config)
-    .then(function (response) {
-        console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-
-    return x+y;
-}
-
-
-
-const subtract = function(x, y){
-
-  
-        return x-y;
-}
 
 module.exports ={
-    add,subtract,insertrecords,createtable
+   insertrecords,createtable,edittable
 }
 
 

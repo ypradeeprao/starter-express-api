@@ -2,7 +2,7 @@ const express = require('express')
 var axios = require('axios');
 const app = express()
 
-const mongojs= require("./mongo.js")
+const mongojs= require("./mongonode.js")
 
 
 const bodyParser = require('body-parser');
@@ -45,9 +45,18 @@ app.get('/:id', function (req, res) {
 
  app.post('/createtable', async (req, res) => {
   
-   var createtableresp = await mongojs.createtable(req) ; 
-   res.end( JSON.stringify(createtableresp));
+   let mongojsresp = await mongojs.createtable(req) ; 
+   res.end( JSON.stringify(mongojsresp));
  })
+
+
+ app.post('/edittable', async (req, res) => {
+  
+   let mongojsresp = await mongojs.edittable(req) ; 
+   res.end( JSON.stringify(mongojsresp));
+ })
+
+
 
  app.post('/signup', async (req, res) => {
   
