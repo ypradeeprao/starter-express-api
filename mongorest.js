@@ -164,18 +164,20 @@ const editrecords = async function(req){
   const deleterecords = async function(req){
     let resp = {issuccess:"true", message:""};
   
-    let {tablename, tabledatalist} = req.body;
+    let {tablename, conditionexpression, updateexpression, upsertifnotfound} = req.body;
     
     let recordsjson = {
         "dataSource": "Cluster0",
         "database": "sampledb1",
         "collection": tablename,
-        "documents": tabledatalist
+        "filter": conditionexpression,
+        "update": { "$set": updateexpression },
+      "upsert":upsertifnotfound
     }
   
     
     let insertmanyconfig = JSON.parse(JSON.stringify(config));
-    insertmanyconfig.url = insertmanyconfigurl;
+    insertmanyconfig.url = deletemanyconfigurl;
     insertmanyconfig.data = recordsjson;
   
   
