@@ -44,7 +44,7 @@ app.get('/:id', function (req, res) {
  })
 
  app.post('/createtable', async (req, res) => {
-  
+  console.log("createtabledfd");
    let mongojsresp = await mongojs.createtable(req) ; 
    res.end( JSON.stringify(mongojsresp));
  })
