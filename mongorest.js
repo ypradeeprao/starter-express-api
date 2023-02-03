@@ -133,7 +133,7 @@ const insertrecords = async function(req){
 
 
 module.exports ={
-   insertrecords,createtable,deletetable
+   insertrecords,createtable,edittable,deletetable
 }
 
 
