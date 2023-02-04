@@ -9,7 +9,7 @@ const sendmobilemessage = async function(req){
     let resp = {issuccess:"true", message:""};
   
     let {phonenumber, message} = req.body;
-   
+   console.log(req.body);
 
 await client.messages 
 .create({ 
