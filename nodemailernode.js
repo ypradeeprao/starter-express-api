@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Gmail',
   auth: {
     user: 'ypradeeprao@gmail.com',
     pass: 'Tir6tw3q@@'
@@ -16,13 +16,13 @@ var mailOptions = {
   text: 'That was easy!'
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+await transporter.sendMail({
+    from: 'xxx@gmail.com',
+      to: 'xxx@gmail.com',
+      subject: 'hello world!',
+      text: 'hello world!'
+    });
+
 }
 module.exports ={
     sendmail
