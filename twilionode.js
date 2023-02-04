@@ -26,6 +26,9 @@ to: phonenumber
     console.log(error);
     resp.issuccess = false;
     resp.message = error;
+    if(error.code == "21211"){
+        resp.message = "invalid number";
+    }
 });
 return resp;
 }
