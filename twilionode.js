@@ -18,12 +18,16 @@ messagingServiceSid: 'MG4d433d25ea1ba7870e5cd84bc4b6746d',
 to: phonenumber 
 }) 
 .then(message => {
+    resp.issuccess = true;
+    resp.message = "message sent";
     console.log('Sent invite to ' + phonenumber + ' with SID ' + message.sid);
 })
 .catch(error => {
     console.log(error);
+    resp.issuccess = false;
+    resp.message = error;
 });
-
+return resp;
 }
 module.exports ={
 sendmobilemessage

@@ -96,7 +96,7 @@ app.get('/:id', function (req, res) {
 app.post('/sendmobilemessage', async (req, res) => {
   
   var x = await twilionodejs.sendmobilemessage(req) ; 
-  res.end( JSON.stringify({}));
+  res.end( JSON.stringify(x));
 })
 
 
