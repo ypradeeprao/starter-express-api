@@ -3,6 +3,7 @@ var axios = require('axios');
 const app = express()
 
 const mongojs= require("./mongorest.js")
+const nodemailerjs= require("./nodemailernode.js")
 
 
 const bodyParser = require('body-parser');
@@ -84,54 +85,12 @@ app.get('/:id', function (req, res) {
    res.end( JSON.stringify({}));
  })
 
- app.post('/signup', async (req, res) => {
+ app.post('/sendmail', async (req, res) => {
   
-   var x = await mongojs.add(4,2) ; 
-   res.end( JSON.stringify({}));
- })
+  var x = await nodemailerjs.sendmail(req) ; 
+  res.end( JSON.stringify({}));
+})
 
-app.post('/deleteuser',  function(req, res){
-   
-    console.log(req.body); 
-       console.log(req.body.id);
-    var user =  req.body ;
-   
-    console.log("user");
-    console.log(user);
-
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-        var users = JSON.parse( data );
-        let usersU = {};
-     
-       for(let i in users){
-        if(users[i].id == user.id){
-
-        }
-        else{
-            usersU[i] = users[i];
-        }
-       } 
-       
-
-
-      console.log("mongofile");
-      var x =  mongojs.add(4,2) ; 
-
-// fs.writeFile(__dirname + "/" + "users.json", JSON.stringify(usersU), (err) => {
-//   if (err)
-//     console.log(err);
-//   else {
-//     console.log("File written successfully\n");
-//     console.log("The written has the following contents:");
-//     console.log(fs.readFileSync(__dirname + "/" + "users.json", "utf8"));
-//   }
-// });
-
-
-     
-       res.end( JSON.stringify(usersU));
-    });
- })
 
 
 
