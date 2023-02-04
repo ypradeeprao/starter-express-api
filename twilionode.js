@@ -19,7 +19,7 @@ to: phonenumber
 }) 
 .then(message => {
     resp.issuccess = true;
-    resp.message = "message sent";
+    resp.message = "message sent to"+phonenumber;
     console.log('Sent invite to ' + phonenumber + ' with SID ' + message.sid);
 })
 .catch(error => {
