@@ -4,6 +4,7 @@ const app = express()
 
 const mongojs= require("./mongorest.js")
 const nodemailerjs= require("./nodemailernode.js")
+const twilionodejs= require("./twilionode.js")
 
 
 const bodyParser = require('body-parser');
@@ -90,6 +91,15 @@ app.get('/:id', function (req, res) {
   var x = await nodemailerjs.sendmail(req) ; 
   res.end( JSON.stringify({}));
 })
+
+
+app.post('/sendmobilemessage', async (req, res) => {
+  
+  var x = await twilionodejs.sendmobilemessage(req) ; 
+  res.end( JSON.stringify({}));
+})
+
+
 
 
 
