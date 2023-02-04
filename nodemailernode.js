@@ -16,12 +16,7 @@ var mailOptions = {
   text: 'That was easy!'
 };
 
-await transporter.sendMail({
-    from: 'xxx@gmail.com',
-      to: 'xxx@gmail.com',
-      subject: 'hello world!',
-      text: 'hello world!'
-    });
+await transporter.sendMail(mailOptions);
 
 }
 module.exports ={
