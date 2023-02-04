@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
 const sendmail = async function(req){
 var mailOptions = {
   from: 'ypradeeprao@gmail.com',
-  to: 'pradeepsdfc07@yahoo.com',
+  to: 'pradeepsfdc07@yahoo.com',
   subject: 'Sending Email using Node.js',
   text: 'That was easy!'
 };
