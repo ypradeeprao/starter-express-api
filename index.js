@@ -6,6 +6,7 @@ const mongojs= require("./mongorest.js")
 const nodemailerjs= require("./nodemailernode.js")
 const twilionodejs= require("./twilionode.js")
 const imgbbrestjs= require("./imgbbrest.js")
+const fileuploadjs = require("./fileupload.js")
 
 
 const bodyParser = require('body-parser');
@@ -107,7 +108,11 @@ app.post('/getuploadimagerequestjson', async (req, res) => {
 })
 
 
-
+app.post('/fileupload', async (req, res) => {
+  
+  var x = await fileuploadjs.fileupload(req) ; 
+  res.end( JSON.stringify(x));
+})
 
 
 
