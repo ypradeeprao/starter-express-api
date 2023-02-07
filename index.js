@@ -59,6 +59,8 @@ app.get('/:id', function (req, res) {
  app.post('/createtable', async (req, res) => {
   console.log("createtabledfd");
    let mongojsresp = await mongojs.createtable(req) ; 
+   res.header('Access-Control-Allow-Headers, *, Access-Control-Allow-Origin', 'Origin, X-Requested-with, Content_Type,Accept,Authorization','https://cdpn.io');
+   
    res.end( JSON.stringify(mongojsresp));
  })
 
