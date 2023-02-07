@@ -11,7 +11,7 @@ const fileuploadjs = require("./fileupload.js")
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
-app.use(cors());
+app.use(cors({origin:"https://cdpn.io"}));
 // Configuring body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
