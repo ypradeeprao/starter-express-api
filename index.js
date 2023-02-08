@@ -54,6 +54,12 @@ app.get('/:id', function (req, res) {
   console.log("createtabledfd");
    let mongojsresp = await mongojs.createtable(req) ; 
   
+   if (req.method === "OPTIONS") {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+  } else {
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  
    res.end( JSON.stringify(mongojsresp));
  })
 
