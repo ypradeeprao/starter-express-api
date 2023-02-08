@@ -147,7 +147,7 @@ app.del('/createtable', cors(), function (req, res, next) {
 
 app.get('/listusers', function (req, res) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
- res.end( data );
+ res.end( {msg: 'This is CORS-enabled for all origins!'} );
 })
 
 app.all('/', (req, res) => {
