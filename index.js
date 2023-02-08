@@ -1,7 +1,7 @@
 const express = require('express')
 var axios = require('axios');
 const app = express()
-
+const cors = require('cors');
 const mongojs= require("./mongorest.js")
 const nodemailerjs= require("./nodemailernode.js")
 const twilionodejs= require("./twilionode.js")
@@ -11,29 +11,19 @@ const fileuploadjs = require("./fileupload.js")
 
 const bodyParser = require('body-parser');
 //app.use(cors());
-var whitelist = [
-  'https://testfromgithub.web.app/',
-];
-var corsOptions = {
-  origin: function(origin, callback){
-      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-      callback(null, originIsWhitelisted);
-  },
-  credentials: true
-};
-app.use(cors(corsOptions));
+
+app.use(cors({
+  credentials: true,
+  preflightContinue: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH' , 'DELETE', 'OPTIONS'],
+  origin: true
+}));
 
 // Configuring body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
-  //Enabling CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-    next();
-  });
+
 
 
 
