@@ -11,7 +11,17 @@ const fileuploadjs = require("./fileupload.js")
 
 const bodyParser = require('body-parser');
 //app.use(cors());
-//app.options('*', cors())
+var whitelist = [
+  'https://testfromgithub.web.app/',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
 
 // Configuring body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
