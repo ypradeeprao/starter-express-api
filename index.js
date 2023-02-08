@@ -11,7 +11,7 @@ const fileuploadjs = require("./fileupload.js")
 
 const bodyParser = require('body-parser');
 //app.use(cors());
-app.options('*', cors())
+//app.options('*', cors())
 
 // Configuring body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
