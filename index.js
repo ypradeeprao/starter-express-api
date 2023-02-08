@@ -148,6 +148,7 @@ var app = express()
 app.get('/listusers', function (req, res) {
  // res.json({msg: 'This is CORS-enabled for all origins!'})
 // res.end( {msg: 'This is CORS-enabled for all origins!'} );
+res.send('Yooo!');
 })
 
 app.all('/', (req, res) => {
