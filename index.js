@@ -140,6 +140,9 @@ var express = require('express')
 var cors = require('cors')
 var app = express()
 
+app.use(express.json());
+app.use(cors({ origin: true }));
+
  app.options('/listusers', cors()) 
 
  app.use(function(req, res, next) {
