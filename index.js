@@ -140,7 +140,15 @@ var express = require('express')
 var cors = require('cors')
 var app = express()
 
- app.options('/listusers', cors()) // enable pre-flight request for DELETE request
+ app.options('/listusers', cors()) 
+
+ app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://testfromgithub.web.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+ // enable pre-flight request for DELETE request
 // app.del('/createtable', cors(), function (req, res, next) {
 //   res.json({msg: 'This is CORS-enabled for all origins!'})
 // })
