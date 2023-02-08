@@ -153,6 +153,6 @@ res.send('Yooo!');
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
-    res.send('Yooo!')
+   res.json({msg: 'This is CORS-enabled for all origins!'})
 })
 app.listen(process.env.PORT || 3000)
