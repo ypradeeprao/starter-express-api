@@ -136,34 +136,33 @@
 
 
 
-var express = require('express')
-var cors = require('cors')
-var app = express()
+const express = require("express");
+// const bodyParser = require("body-parser"); /* deprecated */
+const cors = require("cors");
 
-app.use(express.json());
-app.use(cors({ origin: true }));
+const app = express();
 
- app.options('/listusers', cors()) 
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
- app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://testfromgithub.web.app"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
+app.use(express.json()); /* bodyParser.json() is deprecated */
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
- // enable pre-flight request for DELETE request
-// app.del('/createtable', cors(), function (req, res, next) {
-//   res.json({msg: 'This is CORS-enabled for all origins!'})
-// })
+require("./app/routes/tutorial.routes.js")(app);
 
-app.get('/listusers', function (req, res) {
- // res.json({msg: 'This is CORS-enabled for all origins!'})
-// res.end( {msg: 'This is CORS-enabled for all origins!'} );
-res.send({msg: 'This is CORS-enabled for all origins!'});
-})
-
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yooo!')
-})
-app.listen(process.env.PORT || 3000)
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
