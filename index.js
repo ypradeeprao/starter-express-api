@@ -148,11 +148,11 @@ var app = express()
 app.get('/listusers', function (req, res) {
  // res.json({msg: 'This is CORS-enabled for all origins!'})
 // res.end( {msg: 'This is CORS-enabled for all origins!'} );
-res.send('Yooo!');
+res.send({msg: 'This is CORS-enabled for all origins!'});
 })
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
-   res.json({msg: 'This is CORS-enabled for all origins!'})
+    res.send('Yooo!')
 })
 app.listen(process.env.PORT || 3000)
