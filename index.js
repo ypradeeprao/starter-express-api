@@ -59,8 +59,8 @@ app.get('/:id', function (req, res) {
   } else {
     res.header('Access-Control-Allow-Origin', '*');
   }
-  
-   res.end( JSON.stringify(mongojsresp));
+
+  // res.end( JSON.stringify(mongojsresp));
  })
 
  app.post('/edittable', async (req, res) => {
