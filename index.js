@@ -140,13 +140,18 @@ var express = require('express')
 var cors = require('cors')
 var app = express()
 
-
+app.options('/createtable', cors()) // enable pre-flight request for DELETE request
+app.del('/createtable', cors(), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 
 app.get('/listusers', function (req, res) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
-  res.end( data );
+ res.end( data );
 })
 
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
+app.all('/', (req, res) => {
+    console.log("Just got a request!")
+    res.send('Yooo!')
 })
+app.listen(process.env.PORT || 3000)
