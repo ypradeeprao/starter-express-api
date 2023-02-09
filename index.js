@@ -139,10 +139,14 @@ var express = require('express')
 var cors = require('cors')
 var app = express()
 
-app.use(cors())
 
-app.get('/products', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+
+app.get('/products2',  function (req, res, next) {
+      res.json({msg: 'This is CORS-enabled for a Single Route'})
+})
+
+app.get('/products', cors(), function (req, res, next) {
+      res.json({msg: 'This is CORS-enabled for a Single Route'})
 })
 
 app.listen(3000, function () {
