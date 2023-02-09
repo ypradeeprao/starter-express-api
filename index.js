@@ -19,6 +19,10 @@ app.use(cors({
   origin: true
 }));
 
+
+
+return next();
+
 // Configuring body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,6 +35,14 @@ app.use(bodyParser.json());
 var fs = require("fs");
 
 app.get('/listUsers', function (req, res) {
+      res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+// Set custom headers for CORS
+//res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
+
+if (req.method === "OPTIONS") {
+    return res.status(200).end();
+}
       res.end( JSON.stringify({}));
 })
 
