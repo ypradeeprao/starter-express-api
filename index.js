@@ -13,8 +13,8 @@ const bodyParser = require('body-parser');
 //app.use(cors());
 
 app.use(cors({
-  credentials: true,
-  preflightContinue: true,
+ // credentials: true,
+ // preflightContinue: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH' , 'DELETE', 'OPTIONS'],
   origin: true
 }));
