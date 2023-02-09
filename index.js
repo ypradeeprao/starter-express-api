@@ -144,6 +144,8 @@ app.all('/', function(req, res, next) {
       res.header("Access-Control-Allow-Headers", "Content-type");
       next()
     });
+
+
     app.get('/', function(req, res, next) {
       // Handle the get for this route
      // res.end( {"Test":"TEst"} );
@@ -155,6 +157,8 @@ app.all('/', function(req, res, next) {
 
 
 app.get('/listUsers', function (req, res) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Content-type");
       res.end( {"Test":"TEst"} );
    
 })
